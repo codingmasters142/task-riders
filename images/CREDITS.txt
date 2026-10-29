@@ -1,0 +1,25 @@
+All photos are from Unsplash (https://unsplash.com/license) – free for commercial use, no attribution required.
+Originals: https://unsplash.com/photos/<id>  (search the id on unsplash.com)
+
+hero-1.jpg            photo-1699972551283-2d635d82f3db
+hero-2.jpg            photo-1550149551-97f9a173e795
+hero-3.jpg            photo-1662221992337-5886122c6d15
+bike-hunter.jpg       photo-1614152412509-7a5afc18c75b   (placeholder – replace with your own bike photo)
+bike-meteor.jpg       photo-1694956792421-e946fff94564   (placeholder – replace with your own bike photo)
+bike-classic.jpg      photo-1650206748193-a7a970c833da   (placeholder – replace with your own bike photo)
+scooty-ntorq.jpg      photo-1554223789-df81106a45ed      (placeholder – replace with your own scooty photo)
+dest-darjeeling.jpg   photo-1671711847762-b8308b444a42
+dest-kurseong.jpg     photo-1626082895617-2c6de34f6af3
+dest-kalimpong.jpg    photo-1584043204475-8cc101d6c77a
+dest-gangtok.jpg      photo-1670915198489-58c1261c3a33
+dest-pelling.jpg      photo-1724600457405-a7eeabcff6b5
+dest-north-sikkim.jpg photo-1585914285280-72bae40d4b3a
+dest-northeast.jpg    photo-1689089526066-c7e6e95ee265
+dest-bhutan.jpg       photo-1578556881786-851d4b79cb73
+dest-nepal.jpg        photo-1718179634911-8551f8b0cccf
+why-ride.jpg          photo-1709874859086-b50e500f4136
+blog-1.jpg            photo-1765419102897-0f2328de11e2
+blog-2.jpg            photo-1643955780867-2028886a79b2
+blog-3.jpg            photo-1729176989417-10cab5aa9076
+
+Fonts: Poppins (SIL Open Font License) – fonts/poppins-*.woff2

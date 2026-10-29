@@ -1,0 +1,61 @@
+# Task Riders – clean URLs (works in the web root or a sub-folder like /task-riders/)
+Options -MultiViews -Indexes
+DirectoryIndex index.php
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+# Work out the folder this .htaccess lives in, so redirects work locally and live
+RewriteCond %{REQUEST_URI}::$1 ^(.*?/)(.*)::\2$
+RewriteRule ^(.*)$ - [E=BASE:%1]
+
+# Old static .html addresses → clean URLs (301, keeps SEO)
+RewriteCond %{THE_REQUEST} \s/[^\s?]*\.html[\s?]
+RewriteRule ^index\.html$ %{ENV:BASE} [R=301,L]
+RewriteCond %{THE_REQUEST} \s/[^\s?]*\.html[\s?]
+RewriteRule ^([a-z0-9-]+)\.html$ %{ENV:BASE}$1 [R=301,L]
+
+# /bikes.php → /bikes (only when typed directly)
+RewriteCond %{THE_REQUEST} \s/[^\s?]*\.php[\s?]
+RewriteRule ^index\.php$ %{ENV:BASE} [R=301,L]
+RewriteCond %{THE_REQUEST} \s/[^\s?]*\.php[\s?]
+RewriteRule ^(bikes|destinations|how-it-works|faq|contact|about)\.php$ %{ENV:BASE}$1 [R=301,L]
+
+# Generated text files
+RewriteRule ^llms\.txt$ llms.php [L]
+RewriteRule ^llms-full\.txt$ llms.php?full=1 [L]
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# Destination pages and ride guides
+RewriteRule ^([a-z0-9-]+)-bike-rental$ destination.php?slug=$1 [L,QSA]
+RewriteRule ^(guide-[a-z0-9-]+)$ guide.php?slug=$1 [L,QSA]
+
+# Extension-less pages: /bikes → bikes.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}%{ENV:BASE}$1.php -f
+RewriteRule ^([a-z0-9-]+)$ $1.php [L]
+
+# Anything else that doesn't exist → friendly 404 page
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ 404.php [L]
+</IfModule>
+
+# Caching for static assets (CSS/JS are versioned with ?v=)
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType font/woff2 "access plus 1 year"
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType application/javascript "access plus 1 year"
+</IfModule>
+
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json application/xml image/svg+xml
+</IfModule>
+
+# Never serve the PHP includes folder directly
+RedirectMatch 404 /includes/
