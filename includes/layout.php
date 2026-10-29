@@ -31,7 +31,6 @@ function page_start(array $p): void
     $preload = $p['preload'] ? "\n<link rel=\"preload\" as=\"image\" href=\"{$p['preload']}\">" : '';
     $robots = $p['status'] === 200 ? 'index, follow, max-image-preview:large, max-snippet:-1' : 'noindex';
     $css = asset('css/style.css');
-    $keywords = KEYWORDS;
     echo <<<HTML
 <!DOCTYPE html>
 <html lang="en-IN">
@@ -40,7 +39,6 @@ function page_start(array $p): void
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{$title}</title>
 <meta name="description" content="{$desc}">
-<meta name="keywords" content="{$keywords}">
 <meta name="theme-color" content="#FFD100">
 <link rel="canonical" href="{$canonical}">
 <link rel="icon" type="image/png" href="images/favicon.png">

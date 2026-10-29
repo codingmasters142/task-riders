@@ -4,8 +4,8 @@ require __DIR__ . '/includes/functions.php';
 page_start([
     'path'        => 'faq',
     'active'      => 'faq',
-    'title'       => 'Bike Rental FAQ – Documents, Permits, Fuel, Prices, Bhutan & Nepal | Task Riders',
-    'description' => 'Answers to common questions about renting a Royal Enfield or scooty in Siliguri: documents, helmets, fuel, Sikkim permits, Bhutan and Nepal trips, prices and booking.',
+    'title'       => 'Bike Rental FAQ – Documents, Permits & Prices | Task Riders',
+    'description' => 'Answers to common questions about renting a Royal Enfield or scooty in Siliguri: documents, helmets, fuel, Sikkim permits, Bhutan & Nepal trips and prices.',
     'crumb'       => 'FAQ',
     'schema'      => [faq_schema(FAQ)],
 ]);

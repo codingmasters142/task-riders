@@ -15,6 +15,14 @@ const SITE = [
     'instagram' => '#', // EDIT: https://instagram.com/yourpage
     'facebook'  => '#', // EDIT: https://facebook.com/yourpage
     'youtube'   => '#', // EDIT or leave '#'
+    // Local business details for Google (structured data). Leave '' to skip. Must match your Google Business Profile exactly.
+    'street'      => '', // EDIT: e.g. 'Shop 4, Hill Cart Road'
+    'postcode'    => '', // EDIT: e.g. '734001'
+    'lat'         => '', // EDIT: e.g. '26.7271' (right-click your shop in Google Maps to copy)
+    'lng'         => '', // EDIT: e.g. '88.3953'
+    'hours'       => '', // EDIT: e.g. 'Mo-Su 08:00-20:00'
+    'price_range' => '', // EDIT: e.g. '₹₹' or '₹800–₹2,500 per day'
+    'gbp'         => '', // EDIT: your Google Business Profile / Maps link
 ];
 
 const WA_MESSAGE = 'Hi Task Riders, I want to rent a bike.';
@@ -231,6 +239,7 @@ const GUIDES = [
         'image'     => 'images/blog-1.jpg',
         'alt'       => 'Winding road through green tea hills on the Darjeeling to Gangtok ride',
         'excerpt'   => 'Route, riding time, fuel stops and tips for one of the best hill rides in the East.',
+        'meta'      => 'Darjeeling to Gangtok by bike: about 95–100 km and 4–5 hours. Route via Teesta Bazaar and Rangpo, fuel stops, best bike and riding tips.',
         'read'      => '4 min read',
         'date'      => '2026-10-29', // published date (YYYY-MM-DD)
         'takeaways' => ['About 95–100 km and 4–5 hours with stops',
@@ -267,6 +276,7 @@ HTML,
         'image'     => 'images/blog-2.jpg',
         'alt'       => 'Snow-covered high mountain road in North Sikkim',
         'excerpt'   => 'Which places in Sikkim need a permit, how to get one and what to carry.',
+        'meta'      => 'Sikkim permits for bikers: which places need one (Tsomgo, Nathula, Lachen, Lachung, Gurudongmar), how to get it and what to carry.',
         'read'      => '3 min read',
         'date'      => '2026-10-29',
         'takeaways' => ['Indian citizens need no permit for Gangtok, Pelling and most of Sikkim',
@@ -301,6 +311,7 @@ HTML,
         'image'     => 'images/blog-3.jpg',
         'alt'       => 'Traditional Bhutanese dzong below cloudy mountains',
         'excerpt'   => 'Season-by-season guide to planning your Bhutan motorcycle trip from Siliguri.',
+        'meta'      => 'Best time to ride a motorcycle in Bhutan: March–May and October–November. Season-by-season guide, permits and SDF for riders from Siliguri.',
         'read'      => '3 min read',
         'date'      => '2026-10-29',
         'takeaways' => ['Best seasons: March–May and October–November',

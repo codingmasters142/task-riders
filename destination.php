@@ -11,8 +11,8 @@ if (!$d) {
 page_start([
     'path'        => dest_url($d),
     'active'      => 'destinations',
-    'title'       => "{$d['name']} Bike Rental from Siliguri – Distance, Route & Permits | Task Riders",
-    'description' => "Rent a Royal Enfield in Siliguri for {$d['name']}: about {$d['km']} km, {$d['time']}. Route, best time ({$d['best_time']}), permits and recommended bike.",
+    'title'       => "{$d['name']} Bike Rental from Siliguri | Task Riders",
+    'description' => "Rent a Royal Enfield in Siliguri for {$d['name']}: about {$d['km']} km, {$d['time']}. Route, best time, permits and the right bike for the ride.",
     'crumb'       => [['Destinations', 'destinations'], $d['name']],
     'schema'      => [dest_schema($d), faq_schema(dest_faq($d))],
     'image'       => $d['image'],

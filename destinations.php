@@ -4,8 +4,8 @@ require __DIR__ . '/includes/functions.php';
 page_start([
     'path'        => 'destinations',
     'active'      => 'destinations',
-    'title'       => 'Bike Trips from Siliguri – Distances to Darjeeling, Gangtok, Sikkim, Bhutan & Nepal | Task Riders',
-    'description' => 'Distances, riding times, permits and best seasons for bike trips from Siliguri to Darjeeling, Kurseong, Kalimpong, Gangtok, Pelling, North Sikkim, North East India, Bhutan and Nepal.',
+    'title'       => 'Bike Trip Distances from Siliguri | Task Riders',
+    'description' => 'Distances, riding times, permits and best seasons for bike trips from Siliguri to Darjeeling, Gangtok, Sikkim, Bhutan, Nepal and North East India.',
     'page_type'   => 'CollectionPage',
     'crumb'       => 'Destinations',
     'schema'      => [destinations_schema()],

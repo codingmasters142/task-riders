@@ -1,0 +1,101 @@
+{
+  "summary": {
+    "health_score": 75,
+    "business_type": "Local service – vehicle rental (service-area business, Siliguri)",
+    "top_findings": [
+      "Unverified 4.8 rating / 500+ riders stats with no reviews on site",
+      "No pricing information",
+      "Templated destination pages with ~250 unique words each",
+      "Incomplete local business details (address, hours, geo, GBP)",
+      "Social links are # placeholders; sameAs empty"
+    ],
+    "quick_wins": [
+      "Fill in real social URLs in includes/config.php",
+      "Shorten destination titles under 60 characters",
+      "Add address, geo, openingHours, priceRange to AutoRental schema",
+      "Replace placeholder bike photos with real fleet photos",
+      "Show starting prices on bikes page"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 85,
+      "what_works": ["All sitemap URLs 200", "Real 404 status", "301s from .html/.php", "Self-referencing canonicals", "robots.txt with sitemap", "Server-rendered HTML"],
+      "findings": [
+        {"title": "No security headers; X-Powered-By exposed", "severity": "Medium", "description": "Responses lack HSTS, X-Content-Type-Options, Referrer-Policy, X-Frame-Options and expose PHP version.", "recommendation": "Add mod_headers rules in .htaccess and unset X-Powered-By."},
+        {"title": "Cache headers unverified", "severity": "Medium", "description": "mod_expires not active locally; no Cache-Control on images.", "recommendation": "Verify on live host after deployment."},
+        {"title": "robots.txt per-bot groups override Disallow", "severity": "Low", "description": "Googlebot/Bingbot groups only Allow /, so /_build/ Disallow under * does not apply to them.", "recommendation": "Remove per-bot groups or repeat Disallow."}
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 58,
+      "what_works": ["Quick-answer blocks", "Specific local permit/route knowledge", "Last-updated dates on guides"],
+      "findings": [
+        {"title": "Unverified rating and rider stats", "severity": "High", "description": "STATS shows 4.8 rating and 500+ riders with no reviews or source on the site.", "recommendation": "Add real testimonials or link Google reviews; remove the rating until backed."},
+        {"title": "No pricing", "severity": "High", "description": "No page lists rental prices.", "recommendation": "Publish starting prices per day/week per bike."},
+        {"title": "Thin templated destination pages", "severity": "High", "description": "9 destination pages share one template with ~250 unique words each.", "recommendation": "Add 150-300 unique words and own photos per destination."},
+        {"title": "Weak authorship / about info", "severity": "Medium", "description": "No owner name, experience or shop location.", "recommendation": "Expand About page with people and location."},
+        {"title": "Stock photos only", "severity": "Medium", "description": "All images are Unsplash, including placeholder bike photos.", "recommendation": "Use real fleet and ride photos."},
+        {"title": "Short guides", "severity": "Medium", "description": "3 guides of ~250 words body text.", "recommendation": "Expand to 800+ words and add more guides."}
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 75,
+      "what_works": ["One H1 per page", "Unique titles/descriptions", "Strong internal linking", "Breadcrumbs"],
+      "findings": [
+        {"title": "Long titles", "severity": "Medium", "description": "Destination titles 79-90 chars; /destinations 103 chars.", "recommendation": "Keep under 60 chars."},
+        {"title": "Meta description lengths", "severity": "Medium", "description": "Home 189, destinations 182, several destination pages 179-183; guides 71-83.", "recommendation": "Target 120-160 chars."},
+        {"title": "No guides hub page", "severity": "Low", "description": "Guides have no index page.", "recommendation": "Add /guides."}
+      ]
+    },
+    {
+      "name": "Schema / Structured Data",
+      "score": 80,
+      "what_works": ["Connected @graph", "AutoRental LocalBusiness", "BreadcrumbList, TouristDestination, FAQPage, BlogPosting", "Valid JSON"],
+      "findings": [
+        {"title": "Incomplete LocalBusiness data", "severity": "High", "description": "No streetAddress, postalCode, geo, openingHoursSpecification, priceRange, hasMap.", "recommendation": "Add in business_schema(), matching GBP."},
+        {"title": "Empty sameAs", "severity": "Medium", "description": "Social URLs are #.", "recommendation": "Add real profile URLs and GBP URL."}
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 80,
+      "what_works": ["Preloaded self-hosted fonts", "Hero fetchpriority high", "Lazy-loaded images", "Explicit image dimensions"],
+      "findings": [
+        {"title": "No responsive or modern-format hero images", "severity": "Medium", "description": "1600px JPG heroes of 180-190 KB served to all devices.", "recommendation": "WebP/AVIF with srcset."}
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 85,
+      "what_works": ["llms.txt and llms-full.txt", "AI crawlers allowed", "Quotable answer blocks and tables"],
+      "findings": [
+        {"title": "Few off-site brand signals", "severity": "Medium", "description": "No linked social profiles or listings.", "recommendation": "Create GBP, directory listings, social content."}
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 70,
+      "what_works": ["Descriptive alt text on all images", "Correct width/height"],
+      "findings": [
+        {"title": "No WebP/AVIF or srcset", "severity": "Medium", "description": "JPG only, single size.", "recommendation": "Add modern formats and responsive sizes."},
+        {"title": "Placeholder fleet photos", "severity": "Medium", "description": "Bike photos are stock.", "recommendation": "Replace with real photos."}
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {"name": "Phase 1: Critical Fixes", "timeframe": "Week 1", "items": ["Back up or remove rating stats", "Publish prices", "Complete LocalBusiness schema and contact address"]},
+      {"name": "Phase 2: High-Impact Improvements", "timeframe": "Weeks 2-3", "items": ["Unique content on destination pages", "Shorten titles and descriptions", "Real social URLs", "Real fleet photos", "WebP + srcset", "Security headers"]},
+      {"name": "Phase 3: Content & Authority", "timeframe": "Month 2", "items": ["Expand About page", "Expand and add guides", "Guides hub", "Google Business Profile and listings"]},
+      {"name": "Phase 4: Monitoring & Iteration", "timeframe": "Ongoing", "items": ["Search Console sitemap submission", "PageSpeed checks", "Review collection"]}
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}

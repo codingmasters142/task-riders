@@ -10,7 +10,7 @@ const SUMMARY = 'Royal Enfield & scooty rental service based in Siliguri, West B
 
 function social_links(): array
 {
-    return array_values(array_filter([SITE['instagram'], SITE['facebook'], SITE['youtube']], fn($u) => str_starts_with($u, 'http')));
+    return array_values(array_filter([SITE['instagram'], SITE['facebook'], SITE['youtube'], SITE['gbp']], fn($u) => str_starts_with($u, 'http')));
 }
 
 function business_schema(): array
@@ -45,6 +45,21 @@ function business_schema(): array
     ];
     if ($social = social_links()) {
         $schema['sameAs'] = $social;
+    }
+    // Optional local details – only output once filled in config.php
+    $address = ['streetAddress' => SITE['street'], 'postalCode' => SITE['postcode']];
+    $schema['address'] += array_filter($address);
+    if (SITE['lat'] !== '' && SITE['lng'] !== '') {
+        $schema['geo'] = ['@type' => 'GeoCoordinates', 'latitude' => (float) SITE['lat'], 'longitude' => (float) SITE['lng']];
+    }
+    if (SITE['hours'] !== '') {
+        $schema['openingHours'] = SITE['hours'];
+    }
+    if (SITE['price_range'] !== '') {
+        $schema['priceRange'] = SITE['price_range'];
+    }
+    if (str_starts_with(SITE['gbp'], 'http')) {
+        $schema['hasMap'] = SITE['gbp'];
     }
     return $schema;
 }

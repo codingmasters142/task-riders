@@ -11,7 +11,7 @@ if (!$g) {
 page_start([
     'path'        => $g['slug'],
     'title'       => "{$g['title']} | Task Riders",
-    'description' => $g['excerpt'],
+    'description' => $g['meta'] ?? $g['excerpt'],
     'crumb'       => $g['title'],
     'schema'      => [guide_schema($g)],
     'image'       => $g['image'],

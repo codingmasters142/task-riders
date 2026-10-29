@@ -8,8 +8,6 @@ require_once __DIR__ . '/config.php';
 
 define('ROOT', dirname(__DIR__));
 define('WA', 'https://wa.me/' . SITE['phone_raw'] . '?text=' . rawurlencode(WA_MESSAGE));
-const KEYWORDS = 'bike rent Darjeeling, Royal Enfield rental Gangtok, bike rental Sikkim, scooty rent Darjeeling, '
-               . 'bike rent Siliguri, Bhutan bike trip, Nepal bike rental';
 
 /* ------------------------------------------------------------ helpers */
 
