@@ -95,22 +95,45 @@
     start();
   }
 
-  // ---------- Date helpers ----------
-  function localISO(d) {
-    var off = d.getTimezoneOffset();
-    return new Date(d.getTime() - off * 60000).toISOString();
+  // ---------- Date pickers (flatpickr) ----------
+  function calendar(input, opts) {
+    return flatpickr(input, Object.assign({
+      dateFormat: 'D, d M Y',
+      minDate: 'today',
+      disableMobile: true, // same friendly calendar on phones
+      monthSelectorType: 'static'
+    }, opts));
   }
-  function pretty(value) {
-    var d = new Date(value);
-    if (isNaN(d)) return value;
-    return d.toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: '2-digit' });
-  }
-  function linkDates(from, to, min) {
-    from.min = to.min = min;
-    from.addEventListener('change', function () {
-      to.min = from.value || min;
-      if (to.value && to.value < to.min) to.value = '';
-    });
+  // Date + time in one field, with a Done button to close the calendar
+  var withTime = {
+    enableTime: true,
+    dateFormat: 'D, d M Y, h K',
+    minuteIncrement: 60,
+    defaultHour: 10,
+    defaultMinute: 0,
+    onReady: function (dates, str, fp) {
+      var done = document.createElement('button');
+      done.type = 'button';
+      done.className = 'cal-done';
+      done.textContent = 'Done';
+      done.addEventListener('click', function () { fp.close(); });
+      fp.calendarContainer.appendChild(done);
+    }
+  };
+  // Pick-up + return pair: return can't be before pick-up, and opens right after pick-up is chosen
+  function linkDates(from, to, opts) {
+    var fpTo = calendar(to, opts);
+    var fpFrom = calendar(from, Object.assign({}, opts, {
+      onChange: function (dates) {
+        if (!dates.length) return;
+        fpTo.set('minDate', dates[0]);
+        if (fpTo.selectedDates[0] && fpTo.selectedDates[0] < dates[0]) fpTo.clear();
+      },
+      onClose: function (dates) {
+        if (dates.length && !fpTo.selectedDates.length) setTimeout(function () { fpTo.open(); }, 50);
+      }
+    }));
+    return { from: fpFrom, to: fpTo };
   }
 
   // ---------- Hero search card → WhatsApp ----------
@@ -119,12 +142,13 @@
     var sPick = search.elements.pickup;
     var sRet = search.elements['return'];
     var sErr = search.querySelector('.search-card__error');
-    linkDates(sPick, sRet, localISO(new Date()).slice(0, 16));
+    var sDates = linkDates(sPick, sRet, withTime);
 
     search.addEventListener('submit', function (e) {
       e.preventDefault();
       var sVehicle = search.elements.vehicle;
-      if (!sVehicle.value || !sPick.value || !sRet.value || sRet.value <= sPick.value) {
+      var timeBad = sPick.value && sRet.value && sDates.to.selectedDates[0] <= sDates.from.selectedDates[0];
+      if (!sVehicle.value || !sPick.value || !sRet.value || timeBad) {
         sErr.textContent = !sVehicle.value
           ? 'Please select a bike or scooty.'
           : !sPick.value || !sRet.value
@@ -137,8 +161,8 @@
       var msg = 'Hi Task Riders, I want to rent a bike.\n\n' +
         'Vehicle: ' + search.elements.vehicle.value + '\n' +
         'Pick-up location: ' + search.elements.location.value + '\n' +
-        'Pick-up: ' + pretty(sPick.value) + '\n' +
-        'Return: ' + pretty(sRet.value) + '\n\n' +
+        'Pick-up: ' + sPick.value + '\n' +
+        'Return: ' + sRet.value + '\n\n' +
         'Is it available?';
       window.open(waLink(msg), '_blank', 'noopener');
     });
@@ -156,7 +180,7 @@
 
   var pick = form.elements.pickup_date;
   var ret = form.elements.return_date;
-  linkDates(pick, ret, localISO(new Date()).slice(0, 10));
+  linkDates(pick, ret);
 
   var errorBox = form.querySelector('.form__error');
   var success = form.parentNode.querySelector('.form-success');
@@ -177,7 +201,10 @@
       el.classList.toggle('is-invalid', bad);
       if (bad) invalid.push(el);
     });
-    if (pick.value && ret.value && ret.value < pick.value) { ret.classList.add('is-invalid'); invalid.push(ret); }
+    [pick, ret].forEach(function (el) {
+      el.classList.toggle('is-invalid', !el.value);
+      if (!el.value) invalid.push(el);
+    });
     if (invalid.length) {
       errorBox.textContent = 'Please check the highlighted fields.';
       errorBox.hidden = false;

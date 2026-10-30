@@ -19,7 +19,9 @@ const NAV = [
 function page_start(array $p): void
 {
     $p += ['path' => '', 'active' => '', 'schema' => [], 'preload' => null, 'page_type' => 'WebPage', 'crumb' => null,
-           'image' => 'images/hero-1.jpg', 'og_type' => 'website', 'status' => 200];
+           'image' => 'images/hero-1.jpg', 'og_type' => 'website', 'status' => 200, 'calendar' => false];
+    $GLOBALS['use_calendar'] = $p['calendar'];
+    $calendar_css = $p['calendar'] ? '<link rel="stylesheet" href="' . asset('css/flatpickr.min.css') . "\">\n" : '';
     if ($p['status'] !== 200) {
         http_response_code($p['status']);
     }
@@ -57,7 +59,7 @@ function page_start(array $p): void
 <link rel="alternate" type="text/markdown" href="llms.txt" title="Task Riders summary for AI assistants">
 <link rel="preload" href="fonts/poppins-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/poppins-700.woff2" as="font" type="font/woff2" crossorigin>{$preload}
-<link rel="stylesheet" href="{$css}">
+{$calendar_css}<link rel="stylesheet" href="{$css}">
 <script type="application/ld+json">
 {$graph}
 </script>
@@ -73,6 +75,9 @@ function page_end(): void
 {
     echo "\n</main>\n";
     echo site_footer();
+    if ($GLOBALS['use_calendar']) {
+        echo "\n<script src=\"" . asset('js/flatpickr.min.js') . "\" defer></script>";
+    }
     echo "\n<script src=\"" . asset('js/main.js') . "\" defer></script>\n</body>\n</html>\n";
 }
 

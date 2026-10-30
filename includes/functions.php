@@ -155,11 +155,11 @@ function hero(): string
         </label>
         <label class="field">
           <span>{$i_cal} Pick-up Date &amp; Time</span>
-          <input type="datetime-local" name="pickup" required>
+          <input type="text" name="pickup" placeholder="Select date &amp; time" autocomplete="off">
         </label>
         <label class="field">
           <span>{$i_cal} Return Date &amp; Time</span>
-          <input type="datetime-local" name="return" required>
+          <input type="text" name="return" placeholder="Select date &amp; time" autocomplete="off">
         </label>
         <p class="search-card__error" hidden role="alert"></p>
         <button type="submit" class="btn btn--yellow btn--block">Check Availability</button>
@@ -424,8 +424,8 @@ function enquiry(string $sec_cls = 'section'): string
           <label>Destination<select name="destination"><option value="">Select destination</option>{$dest_opts}<option>Other / Not sure yet</option></select></label>
         </div>
         <div class="form__row">
-          <label>Pickup Date*<input type="date" name="pickup_date" required></label>
-          <label>Return Date*<input type="date" name="return_date" required></label>
+          <label>Pickup Date*<input type="text" name="pickup_date" placeholder="Select date" autocomplete="off"></label>
+          <label>Return Date*<input type="text" name="return_date" placeholder="Select date" autocomplete="off"></label>
         </div>
         <label>Message<textarea name="message" rows="4" maxlength="1000" placeholder="Number of riders, route plan, any questions…"></textarea></label>
         <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">

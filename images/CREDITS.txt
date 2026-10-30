@@ -23,3 +23,4 @@ blog-2.jpg            photo-1643955780867-2028886a79b2
 blog-3.jpg            photo-1729176989417-10cab5aa9076
 
 Fonts: Poppins (SIL Open Font License) – fonts/poppins-*.woff2
+flatpickr 4.6.13 (MIT licence) – js/flatpickr.min.js, css/flatpickr.min.css
