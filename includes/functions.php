@@ -61,9 +61,6 @@ const ICONS = [
     'engine'   => '<path d="M4 9h3l2-2h5l2 2h2v3h2v4h-2v2h-4l-2 2H9l-2-2H4z"/>',
     'phone'    => '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
     'mail'     => '<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/>',
-    'insta'    => '<rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5"/>',
-    'facebook' => '<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>',
-    'youtube'  => '<rect x="2" y="5" width="20" height="14" rx="4"/><path d="m10 9 5 3-5 3z"/>',
     'arrow-right' => '<path d="M5 12h14M13 5l7 7-7 7"/>',
     'chevron'  => '<path d="m6 9 6 6 6-6"/>',
     'clock'    => '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
@@ -117,6 +114,15 @@ function hero(): string
         $dots .= '<button type="button" aria-label="Show slide ' . $n . '"' . ($first ? ' class="is-active"' : '') . '></button>';
     }
     $loc_opts = implode('', array_map(fn($l) => '<option>' . e($l) . '</option>', LOCATIONS));
+    // Grouped under "Bike" and "Scooty" headings, using each vehicle's type from config.php
+    $bike_opts = '';
+    foreach (['Bike', 'Scooty'] as $type) {
+        $bike_opts .= '<optgroup label="' . $type . '">';
+        foreach (array_filter(BIKES, fn($b) => $b['type'] === $type) as $b) {
+            $bike_opts .= '<option>' . e($b['name']) . '</option>';
+        }
+        $bike_opts .= '</optgroup>';
+    }
     $perks = '';
     foreach ([['helmet', 'Free helmet'], ['support', '24/7 support'], ['doc', 'Permit help']] as [$ic, $t]) {
         $perks .= '<li>' . icon($ic) . $t . '</li>';
@@ -131,7 +137,7 @@ function hero(): string
   <div class="container hero__grid">
     <div class="hero__text">
       <span class="tagline">Ride • Explore • Repeat</span>
-      <h1>Rent Royal Enfield &amp; Scooty in <span class="hl">Darjeeling, Sikkim</span> &amp; the Himalayas</h1>
+      <h1>Your next <span class="hl hl--rotate" data-words="adventure,journey,road trip,escape">adventure</span><br>starts here</h1>
       <p class="hero__lead">Well-serviced bikes from {$city} for Darjeeling, Gangtok, Bhutan, Nepal &amp; the North East.</p>
       <ul class="hero__perks">{$perks}</ul>
       <div class="hero__dots" data-dots>{$dots}</div>
@@ -139,10 +145,10 @@ function hero(): string
 
     <form class="search-card" id="search-card" novalidate>
         <h2 class="search-card__title">Book Your Ride</h2>
-        <div class="toggle" role="radiogroup" aria-label="Vehicle type">
-          <label><input type="radio" name="vehicle" value="Bike" checked><span>{$i_bike} Bike</span></label>
-          <label><input type="radio" name="vehicle" value="Scooty"><span>{$i_bike} Scooty</span></label>
-        </div>
+        <label class="field field--full">
+          <span>{$i_bike} Bike / Scooty</span>
+          <select name="vehicle" required><option value="">Select a bike or scooty</option>{$bike_opts}</select>
+        </label>
         <label class="field field--full">
           <span>{$i_pin} Pick-up Location</span>
           <select name="location" data-location>{$loc_opts}</select>
@@ -179,11 +185,12 @@ function bike_card(array $b): string
         $feats .= '<li>' . icon('check') . e($f) . '</li>';
     }
     $e = 'e';
+    $src = asset($b['image']); // versioned so replaced photos show immediately
     $engine_icon = icon('engine');
     $btn = wa_link('Enquire Now', 'btn btn--wa btn--sm');
     return <<<HTML
     <article class="bike-card">
-      <div class="bike-card__img"><img src="{$b['image']}" alt="{$e($b['alt'])}" width="800" height="600" loading="lazy"></div>
+      <div class="bike-card__img"><img src="{$src}" alt="{$e($b['alt'])}" width="800" height="600" loading="lazy"></div>
       <div class="bike-card__body">
         <div class="bike-card__meta"><span class="chip">{$e($b['type'])}</span><span class="engine">{$engine_icon}{$e($b['engine'])}</span></div>
         <h3>{$e($b['name'])}</h3>
@@ -386,7 +393,6 @@ function enquiry(string $sec_cls = 'section'): string
     }
     $head = head_label('Book Now', 'Send a Booking Enquiry', "Fill in your details and we'll get back to you shortly. Prefer chat? WhatsApp us anytime.", false);
     $i_phone = icon('phone');
-    $i_wa = icon('whatsapp');
     $i_mail = icon('mail');
     $i_pin = icon('pin');
     $i_ok = icon('check-circle');
@@ -399,8 +405,7 @@ function enquiry(string $sec_cls = 'section'): string
     <div class="enquiry__info">
       {$head}
       <ul class="contact-list">
-        <li>{$i_phone}<div><span>Call</span><a href="tel:+{$s['call_raw']}">{$s['call']}</a></div></li>
-        <li>{$i_wa}<div><span>WhatsApp</span><a href="{$wa}" target="_blank" rel="noopener">{$s['phone']}</a></div></li>
+        <li>{$i_phone}<div><span>Call / WhatsApp</span><a href="tel:+{$s['phone_raw']}">{$s['phone']}</a></div></li>
         <li>{$i_mail}<div><span>Email</span><a href="mailto:{$s['email']}">{$s['email']}</a></div></li>
         <li>{$i_pin}<div><span>Based in</span><strong>{$s['city']}</strong></div></li>
       </ul>

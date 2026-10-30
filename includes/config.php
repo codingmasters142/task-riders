@@ -9,10 +9,8 @@ const SITE = [
     'domain'    => 'taskriders.in',
     'url'       => 'https://taskriders.in/',
     'email'     => 'taskriders.slg@gmail.com',
-    'phone'     => '+91 97330 42987', // WhatsApp number
-    'phone_raw' => '919733042987',
-    'call'      => '+91 92462 40880', // number for phone calls
-    'call_raw'  => '919246240880',
+    'phone'     => '+91 92462 40880', // used for calls and WhatsApp
+    'phone_raw' => '919246240880',
     'city'      => 'Siliguri, West Bengal',
     'instagram' => '#', // EDIT: https://instagram.com/yourpage
     'facebook'  => '#', // EDIT: https://facebook.com/yourpage
@@ -59,7 +57,7 @@ const BIKES = [
         'name'     => 'Royal Enfield Meteor 350',
         'type'     => 'Bike',
         'image'    => 'images/bike-meteor.jpg',
-        'alt'      => 'Royal Enfield cruiser motorcycle for long highway rides to Bhutan and the North East',
+        'alt'      => 'Black Royal Enfield Meteor 350 cruiser on rent, parked at a Himalayan viewpoint at sunset',
         'engine'   => '349 cc',
         'summary'  => 'Comfortable cruiser for long rides.',
         'features' => ['Relaxed cruiser seating', 'Smooth on long highways', 'Great for Bhutan & North East'],
@@ -81,7 +79,7 @@ const BIKES = [
         'name'     => 'TVS Ntorq 125',
         'type'     => 'Scooty',
         'image'    => 'images/scooty-ntorq.jpg',
-        'alt'      => 'Scooty on rent in Siliguri and Darjeeling for local sightseeing',
+        'alt'      => 'TVS Ntorq 125 Race Edition scooty on rent, parked on a hill road at sunset',
         'engine'   => '124.8 cc',
         'summary'  => 'Easy, fuel-efficient for local sightseeing.',
         'features' => ['Gearless & easy to ride', 'Fuel-efficient', 'Perfect for town sightseeing'],
@@ -215,7 +213,7 @@ const FAQ = [
     ['Is fuel included?',
      'No, fuel is extra. Bikes are handed over with enough fuel to reach the nearest pump.'],
     ['How do I book?',
-     'Fill the enquiry form on this site or WhatsApp us on +91 97330 42987.'],
+     'Fill the enquiry form on this site or WhatsApp us on +91 92462 40880.'],
     ['Where can I rent a Royal Enfield for Darjeeling or Sikkim?',
      'Task Riders rents the Royal Enfield Hunter 350, Meteor 350, Classic 350 and the TVS Ntorq 125 scooty from Siliguri, '
      . 'the gateway to Darjeeling, Sikkim, Bhutan and Nepal. Book through the enquiry form or on WhatsApp.'],

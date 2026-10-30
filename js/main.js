@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var WHATSAPP = '919733042987';
+  var WHATSAPP = '919246240880';
   var EMAIL = 'taskriders.slg@gmail.com';
   // Free form-to-email service. The first enquiry sends an activation email to the inbox above — click it once.
   var FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + EMAIL;
@@ -56,6 +56,21 @@
     s.addEventListener('change', function () { setLocation(s.value); store('tr-location', s.value); });
   });
 
+  // ---------- Hero heading: rotating word ----------
+  var rotator = document.querySelector('[data-words]');
+  if (rotator && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var words = rotator.getAttribute('data-words').split(',');
+    var wordIndex = 0;
+    setInterval(function () {
+      rotator.classList.add('is-out');
+      setTimeout(function () {
+        wordIndex = (wordIndex + 1) % words.length;
+        rotator.textContent = words[wordIndex];
+        rotator.classList.remove('is-out');
+      }, 350);
+    }, 2500);
+  }
+
   // ---------- Hero slider ----------
   var slider = document.querySelector('[data-slider]');
   if (slider) {
@@ -108,10 +123,13 @@
 
     search.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (!sPick.value || !sRet.value || sRet.value <= sPick.value) {
-        sErr.textContent = !sPick.value || !sRet.value
-          ? 'Please choose your pick-up and return date & time.'
-          : 'Return time must be after pick-up time.';
+      var sVehicle = search.elements.vehicle;
+      if (!sVehicle.value || !sPick.value || !sRet.value || sRet.value <= sPick.value) {
+        sErr.textContent = !sVehicle.value
+          ? 'Please select a bike or scooty.'
+          : !sPick.value || !sRet.value
+            ? 'Please choose your pick-up and return date & time.'
+            : 'Return time must be after pick-up time.';
         sErr.hidden = false;
         return;
       }

@@ -5,9 +5,9 @@ hero-1.jpg            photo-1699972551283-2d635d82f3db
 hero-2.jpg            photo-1550149551-97f9a173e795
 hero-3.jpg            photo-1662221992337-5886122c6d15
 bike-hunter.jpg       photo-1614152412509-7a5afc18c75b   (placeholder – replace with your own bike photo)
-bike-meteor.jpg       photo-1694956792421-e946fff94564   (placeholder – replace with your own bike photo)
+bike-meteor.jpg       supplied by Task Riders
 bike-classic.jpg      photo-1650206748193-a7a970c833da   (placeholder – replace with your own bike photo)
-scooty-ntorq.jpg      photo-1554223789-df81106a45ed      (placeholder – replace with your own scooty photo)
+scooty-ntorq.jpg      supplied by Task Riders
 dest-darjeeling.jpg   photo-1671711847762-b8308b444a42
 dest-kurseong.jpg     photo-1626082895617-2c6de34f6af3
 dest-kalimpong.jpg    photo-1584043204475-8cc101d6c77a

@@ -116,7 +116,7 @@ function site_footer(): string
     }
     $s = array_map('e', SITE);
     $wa = e(WA);
-    $i = array_map('icon', ['insta' => 'insta', 'facebook' => 'facebook', 'youtube' => 'youtube', 'whatsapp' => 'whatsapp',
+    $i = array_map('icon', ['whatsapp' => 'whatsapp',
                             'phone' => 'phone', 'mail' => 'mail', 'pin' => 'pin']);
     return <<<HTML
 <footer class="footer">
@@ -126,13 +126,8 @@ function site_footer(): string
         <img src="images/logo.png" alt="Task Riders logo" width="56" height="56" loading="lazy" onerror="this.style.display='none'">
         <span>Task <b>Riders</b></span>
       </a>
-      <p>Himalayan bike rentals from the hills.</p>
-      <div class="social">
-        <a href="{$s['instagram']}" aria-label="Instagram" target="_blank" rel="noopener">{$i['insta']}</a>
-        <a href="{$s['facebook']}" aria-label="Facebook" target="_blank" rel="noopener">{$i['facebook']}</a>
-        <a href="{$s['youtube']}" aria-label="YouTube" target="_blank" rel="noopener">{$i['youtube']}</a>
-        <a href="{$wa}" aria-label="WhatsApp" target="_blank" rel="noopener">{$i['whatsapp']}</a>
-      </div>
+      <p class="footer__tagline">Himalayan bike rentals from the hills.</p>
+      <p class="footer__about">Task Riders offers Royal Enfield and scooty rental in Siliguri, the gateway to the Eastern Himalayas. Rent a Hunter 350, Meteor 350, Classic 350 or TVS Ntorq 125 for rides to Darjeeling, Gangtok, Sikkim, Bhutan, Nepal and North East India, with a free helmet, permit help and 24/7 on-road support.</p>
     </div>
     <div>
       <h4>Company</h4>
@@ -145,8 +140,7 @@ function site_footer(): string
     <div>
       <h4>Get in Touch</h4>
       <ul class="footer__contact">
-        <li>{$i['phone']}<a href="tel:+{$s['call_raw']}">{$s['call']}</a></li>
-        <li>{$i['whatsapp']}<a href="{$wa}" target="_blank" rel="noopener">{$s['phone']}</a></li>
+        <li>{$i['phone']}<a href="tel:+{$s['phone_raw']}">{$s['phone']}</a></li>
         <li>{$i['mail']}<a href="mailto:{$s['email']}">{$s['email']}</a></li>
         <li>{$i['pin']}<span>{$s['city']}</span></li>
       </ul>
@@ -155,7 +149,7 @@ function site_footer(): string
   <div class="footer__bottom"><div class="container">© 2026 Task Riders | <a href="{$s['url']}">{$s['domain']}</a></div></div>
 </footer>
 
-<a href="tel:+{$s['call_raw']}" class="call-float" aria-label="Call {$s['call']}">{$i['phone']}</a>
+<a href="tel:+{$s['phone_raw']}" class="call-float" aria-label="Call {$s['phone']}">{$i['phone']}</a>
 <a href="{$wa}" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">{$i['whatsapp']}</a>
 HTML;
 }
