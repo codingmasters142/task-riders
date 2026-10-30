@@ -145,7 +145,8 @@ function site_footer(): string
     <div>
       <h4>Get in Touch</h4>
       <ul class="footer__contact">
-        <li>{$i['phone']}<a href="tel:+{$s['phone_raw']}">{$s['phone']}</a></li>
+        <li>{$i['phone']}<a href="tel:+{$s['call_raw']}">{$s['call']}</a></li>
+        <li>{$i['whatsapp']}<a href="{$wa}" target="_blank" rel="noopener">{$s['phone']}</a></li>
         <li>{$i['mail']}<a href="mailto:{$s['email']}">{$s['email']}</a></li>
         <li>{$i['pin']}<span>{$s['city']}</span></li>
       </ul>
@@ -154,7 +155,7 @@ function site_footer(): string
   <div class="footer__bottom"><div class="container">© 2026 Task Riders | <a href="{$s['url']}">{$s['domain']}</a></div></div>
 </footer>
 
-<a href="tel:+{$s['phone_raw']}" class="call-float" aria-label="Call {$s['phone']}">{$i['phone']}</a>
+<a href="tel:+{$s['call_raw']}" class="call-float" aria-label="Call {$s['call']}">{$i['phone']}</a>
 <a href="{$wa}" class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">{$i['whatsapp']}</a>
 HTML;
 }

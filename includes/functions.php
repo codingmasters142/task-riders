@@ -386,6 +386,7 @@ function enquiry(string $sec_cls = 'section'): string
     }
     $head = head_label('Book Now', 'Send a Booking Enquiry', "Fill in your details and we'll get back to you shortly. Prefer chat? WhatsApp us anytime.", false);
     $i_phone = icon('phone');
+    $i_wa = icon('whatsapp');
     $i_mail = icon('mail');
     $i_pin = icon('pin');
     $i_ok = icon('check-circle');
@@ -398,7 +399,8 @@ function enquiry(string $sec_cls = 'section'): string
     <div class="enquiry__info">
       {$head}
       <ul class="contact-list">
-        <li>{$i_phone}<div><span>Call / WhatsApp</span><a href="tel:+{$s['phone_raw']}">{$s['phone']}</a></div></li>
+        <li>{$i_phone}<div><span>Call</span><a href="tel:+{$s['call_raw']}">{$s['call']}</a></div></li>
+        <li>{$i_wa}<div><span>WhatsApp</span><a href="{$wa}" target="_blank" rel="noopener">{$s['phone']}</a></div></li>
         <li>{$i_mail}<div><span>Email</span><a href="mailto:{$s['email']}">{$s['email']}</a></div></li>
         <li>{$i_pin}<div><span>Based in</span><strong>{$s['city']}</strong></div></li>
       </ul>

@@ -22,7 +22,8 @@ $url = SITE['url'];
 $facts = implode("\n", [
     "- Business: " . SITE['name'] . " (" . SITE['domain'] . "), Royal Enfield & scooty rental",
     "- Based in: " . SITE['city'] . ", India",
-    "- Phone / WhatsApp: " . SITE['phone'] . " (https://wa.me/" . SITE['phone_raw'] . ")",
+    "- Phone (calls): " . SITE['call'],
+    "- WhatsApp: " . SITE['phone'] . " (https://wa.me/" . SITE['phone_raw'] . ")",
     "- Email: " . SITE['email'],
     "- Pick-up points: " . implode(', ', LOCATIONS),
     "- Fleet: " . implode('; ', array_map(fn($b) => "{$b['name']} ({$b['engine']}) – " . rtrim($b['summary'], '.'), BIKES)),
