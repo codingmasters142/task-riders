@@ -21,7 +21,7 @@ function html_to_text(string $html): string
 $url = SITE['url'];
 $facts = implode("\n", [
     "- Business: " . SITE['name'] . " (" . SITE['domain'] . "), Royal Enfield & scooty rental",
-    "- Based in: " . SITE['city'] . ", India",
+    "- Address: " . SITE['address'] . " (Google Maps: " . SITE['map'] . ")",
     "- Phone / WhatsApp: " . SITE['phone'] . " (https://wa.me/" . SITE['phone_raw'] . ")",
     "- Email: " . SITE['email'],
     "- Pick-up points: " . implode(', ', LOCATIONS),

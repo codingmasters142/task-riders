@@ -67,6 +67,12 @@ function page_start(array $p): void
 <body>
 
 HTML;
+    // Page loader – only on the first page of a visit, and only if loading takes more than ~0.3s (see .loader in style.css)
+    echo '<div class="loader" role="status" aria-label="Loading"><div class="loader__inner">'
+       . '<span class="loader__ring"></span><img src="images/logo.png" alt="" width="64" height="64"></div></div>'
+       . '<script>try{if(sessionStorage.getItem("tr-loaded"))document.querySelector(".loader").classList.add("is-skip");'
+       . 'else sessionStorage.setItem("tr-loaded","1")}catch(e){}</script>'
+       . "<noscript><style>.loader{display:none}</style></noscript>\n";
     echo site_header($p['active']);
     echo "<main>\n";
 }
@@ -147,11 +153,11 @@ function site_footer(): string
       <ul class="footer__contact">
         <li>{$i['phone']}<a href="tel:+{$s['phone_raw']}">{$s['phone']}</a></li>
         <li>{$i['mail']}<a href="mailto:{$s['email']}">{$s['email']}</a></li>
-        <li>{$i['pin']}<span>{$s['city']}</span></li>
+        <li>{$i['pin']}<a href="{$s['map']}" target="_blank" rel="noopener">{$s['address']}</a></li>
       </ul>
     </div>
   </div>
-  <div class="footer__bottom"><div class="container">© 2026 Task Riders | <a href="{$s['url']}">{$s['domain']}</a></div></div>
+  <div class="footer__bottom"><div class="container">© 2026 Task Riders. All Rights Reserved. (Powered by <a href="https://codingmedia.in/" target="_blank" rel="noopener">Coding Media</a>)</div></div>
 </footer>
 
 <a href="tel:+{$s['phone_raw']}" class="call-float" aria-label="Call {$s['phone']}">{$i['phone']}</a>

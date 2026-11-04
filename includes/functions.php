@@ -407,7 +407,7 @@ function enquiry(string $sec_cls = 'section'): string
       <ul class="contact-list">
         <li>{$i_phone}<div><span>Call / WhatsApp</span><a href="tel:+{$s['phone_raw']}">{$s['phone']}</a></div></li>
         <li>{$i_mail}<div><span>Email</span><a href="mailto:{$s['email']}">{$s['email']}</a></div></li>
-        <li>{$i_pin}<div><span>Based in</span><strong>{$s['city']}</strong></div></li>
+        <li>{$i_pin}<div><span>Address</span><strong>{$s['address']}</strong> <a class="directions" href="{$s['map']}" target="_blank" rel="noopener">Get directions →</a></div></li>
       </ul>
       {$wa_btn}
     </div>
@@ -476,6 +476,35 @@ function guides(string $sec_cls = 'section', ?string $exclude = null): string
   <div class="container">
     {$head}
     <div class="guide-grid">{$cards}</div>
+  </div>
+</section>
+HTML;
+}
+
+/** Google Map of the pick-up location (uses lat/lng from config.php). */
+function contact_map(string $sec_cls = 'section section--grey'): string
+{
+    $embed = e('https://www.google.com/maps?q=' . SITE['lat'] . ',' . SITE['lng'] . '&z=16&output=embed');
+    $address = e(SITE['address']);
+    $map = e(SITE['map']);
+    $head = head_label('Find Us', 'Our Location', $address);
+    return <<<HTML
+<section class="{$sec_cls}" id="location">
+  <div class="container">
+    {$head}
+    <div class="map-embed">
+      <iframe src="{$embed}" title="Task Riders location on Google Maps – {$address}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="map-card">
+        <img src="images/logo.png" alt="" width="52" height="52" loading="lazy">
+        <div>
+          <strong>Task Riders</strong>
+          <span>Royal Enfield &amp; Scooty Rental</span>
+          <p>{$address}</p>
+          <a href="{$map}" target="_blank" rel="noopener">Get directions →</a>
+        </div>
+      </div>
+    </div>
+    <div class="map-actions"><a href="{$map}" class="btn btn--yellow" target="_blank" rel="noopener">Get directions</a></div>
   </div>
 </section>
 HTML;

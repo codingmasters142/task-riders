@@ -11,5 +11,5 @@ page_start([
     'calendar'    => true,
 ]);
 echo page_hero('Contact &amp; Booking', 'Call or WhatsApp ' . e(SITE['phone']) . ', email ' . e(SITE['email']) . ', or send the enquiry form below — we reply fast.', 'Contact');
-echo enquiry(), faq();
+echo enquiry(), contact_map(), faq('section');
 page_end();

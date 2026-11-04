@@ -16,6 +16,15 @@
     } catch (err) { return null; }
   }
 
+  // ---------- Page loader: hide as soon as the page content is ready ----------
+  // (This script is deferred, so it runs once the HTML and styles are in place –
+  //  no need to wait for every image, font and map to finish.)
+  var loader = document.querySelector('.loader');
+  if (loader) {
+    // Ready before the loader ever appeared (0.3s)? Remove it without any flash.
+    loader.classList.add(performance.now() < 300 ? 'is-skip' : 'is-done');
+  }
+
   // ---------- Header: mobile menu + shadow ----------
   var header = document.querySelector('.header');
   var burger = document.querySelector('.burger');

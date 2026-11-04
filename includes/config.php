@@ -12,14 +12,16 @@ const SITE = [
     'phone'     => '+91 92462 40880', // used for calls and WhatsApp
     'phone_raw' => '919246240880',
     'city'      => 'Siliguri, West Bengal',
+    'address'   => 'MCXV+WCH, North Bharat Nagar, Dabgram, Siliguri, West Bengal 734006, India', // shown on the site
+    'map'       => 'https://www.google.com/maps/search/?api=1&query=26.6998518%2C88.4438203', // "Get directions" link
     'instagram' => '#', // EDIT: https://instagram.com/yourpage
     'facebook'  => '#', // EDIT: https://facebook.com/yourpage
     'youtube'   => '#', // EDIT or leave '#'
     // Local business details for Google (structured data). Leave '' to skip. Must match your Google Business Profile exactly.
-    'street'      => '', // EDIT: e.g. 'Shop 4, Hill Cart Road'
-    'postcode'    => '', // EDIT: e.g. '734001'
-    'lat'         => '', // EDIT: e.g. '26.7271' (right-click your shop in Google Maps to copy)
-    'lng'         => '', // EDIT: e.g. '88.3953'
+    'street'      => 'MCXV+WCH, North Bharat Nagar, Dabgram',
+    'postcode'    => '734006',
+    'lat'         => '26.6998518', // exact map pin
+    'lng'         => '88.4438203',
     'hours'       => '', // EDIT: e.g. 'Mo-Su 08:00-20:00'
     'price_range' => '', // EDIT: e.g. '₹₹' or '₹800–₹2,500 per day'
     'gbp'         => '', // EDIT: your Google Business Profile / Maps link
