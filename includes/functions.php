@@ -484,7 +484,10 @@ HTML;
 /** Google Map of the pick-up location (uses lat/lng from config.php). */
 function contact_map(string $sec_cls = 'section section--grey'): string
 {
-    $embed = e('https://www.google.com/maps?q=' . SITE['lat'] . ',' . SITE['lng'] . '&z=16&output=embed');
+    // Show the Task Riders listing (name label on the pin) if we have its place ID, else just the coordinates
+    $embed = e(SITE['cid'] !== ''
+        ? 'https://maps.google.com/maps?cid=' . SITE['cid'] . '&output=embed'
+        : 'https://www.google.com/maps?q=' . SITE['lat'] . ',' . SITE['lng'] . '&z=16&output=embed');
     $address = e(SITE['address']);
     $map = e(SITE['map']);
     $head = head_label('Find Us', 'Our Location', $address);
@@ -494,15 +497,6 @@ function contact_map(string $sec_cls = 'section section--grey'): string
     {$head}
     <div class="map-embed">
       <iframe src="{$embed}" title="Task Riders location on Google Maps – {$address}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-      <div class="map-card">
-        <img src="images/logo.png" alt="" width="52" height="52" loading="lazy">
-        <div>
-          <strong>Task Riders</strong>
-          <span>Royal Enfield &amp; Scooty Rental</span>
-          <p>{$address}</p>
-          <a href="{$map}" target="_blank" rel="noopener">Get directions →</a>
-        </div>
-      </div>
     </div>
     <div class="map-actions"><a href="{$map}" class="btn btn--yellow" target="_blank" rel="noopener">Get directions</a></div>
   </div>

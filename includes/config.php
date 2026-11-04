@@ -12,19 +12,20 @@ const SITE = [
     'phone'     => '+91 92462 40880', // used for calls and WhatsApp
     'phone_raw' => '919246240880',
     'city'      => 'Siliguri, West Bengal',
-    'address'   => 'MCXV+WCH, North Bharat Nagar, Dabgram, Siliguri, West Bengal 734006, India', // shown on the site
-    'map'       => 'https://www.google.com/maps/search/?api=1&query=26.699658%2C88.4436434', // "Get directions" link
+    'address'   => 'MCXV+VCJ, North Bharat Nagar, Dabgram, Siliguri, West Bengal 734006, India', // shown on the site
+    'map'       => 'https://www.google.com/maps?cid=17846559560226029472', // Task Riders on Google Maps ("Get directions" link)
     'instagram' => '#', // EDIT: https://instagram.com/yourpage
     'facebook'  => '#', // EDIT: https://facebook.com/yourpage
     'youtube'   => '#', // EDIT or leave '#'
     // Local business details for Google (structured data). Leave '' to skip. Must match your Google Business Profile exactly.
-    'street'      => 'MCXV+WCH, North Bharat Nagar, Dabgram',
+    'street'      => 'MCXV+VCJ, North Bharat Nagar, Dabgram',
     'postcode'    => '734006',
-    'lat'         => '26.699658', // exact map pin
-    'lng'         => '88.4436434',
+    'lat'         => '26.6997139', // Task Riders place pin on Google Maps
+    'lng'         => '88.4435201',
     'hours'       => '', // EDIT: e.g. 'Mo-Su 08:00-20:00'
     'price_range' => '', // EDIT: e.g. '₹₹' or '₹800–₹2,500 per day'
-    'gbp'         => '', // EDIT: your Google Business Profile / Maps link
+    'gbp'         => 'https://www.google.com/maps?cid=17846559560226029472', // Task Riders Google Maps listing
+    'cid'         => '17846559560226029472', // Google Maps place ID (CID) – used for the embedded map
 ];
 
 const WA_MESSAGE = 'Hi Task Riders, I want to rent a bike.';
